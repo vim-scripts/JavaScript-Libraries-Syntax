@@ -1,17 +1,17 @@
 " Vim syntax file
 " Language:    require.js for coffee
 " Maintainer:  othree <othree@gmail.com>
-" Last Change: 2013/02/24
-" Version:     2.1.4
+" Last Change: 2013/04/22
+" Version:     2.1.4.1
 " URL:         http://requirejs.org/
 
 
-syntax keyword coffeeRequire require requirejs containedin=ALLBUT,coffeeComment
-syntax match   coffeeRequiredot containedin=ALLBUT,coffeeComment /\(\<require\.\|requirejs\.\)\@<=\h\w*/ contains=coffeeRequireMethods
+syntax keyword coffeeRequire require requirejs containedin=ALLBUT,coffeeComment nextgroup=coffeeRequiredot
+syntax match   coffeeRequiredot contained /\./ nextgroup=coffeeRequireMethods
 syntax keyword coffeeRequireMethods contained config
 
-syntax keyword coffeeRdefine define containedin=ALLBUT,coffeeComment
-syntax match   coffeeRdefinedot containedin=ALLBUT,coffeeComment /\(\<define\.\)\@<=\h\w*/ contains=coffeeRdefineMethods
+syntax keyword coffeeRdefine define containedin=ALLBUT,coffeeComment nextgroup=coffeeRdefinedot
+syntax match   coffeeRdefinedot contained /\./ nextgroup=coffeeRdefineMethods
 syntax keyword coffeeRdefineMethods contained amd
 
 
