@@ -4,12 +4,14 @@
 " Last Change: 2013/04/21
 " Version:     1.4.4.1
 " URL:         http://underscorejs.org/
+" LoDash:      1.2.0
+" URL:         http://lodash.com/
 
-syntax match   coffeeunderscore containedin=ALLBUT,coffeeComment /\<_\>/ nextgroup=coffeeunderscoredot
+syntax match   coffeeunderscore containedin=ALLBUT,coffeeComment,coffeeString /\<_\>/ nextgroup=coffeeunderscoredot
 syntax match   coffeeunderscoredot contained /\./ nextgroup=@coffee_Functions
 syntax match   coffeeunderscoredot contained /([^)]*)\./ nextgroup=@coffee_Functions
 
-syntax cluster coffee_Functions contains=coffee_collections,coffee_arrays,coffee_functions,coffee_objects,coffee_chaining
+syntax cluster coffee_Functions contains=coffee_collections,coffee_arrays,coffee_functions,coffee_objects,coffee_chaining,coffee_lodash
 
 syntax match   coffee_collections contained /contains/
 syntax keyword coffee_collections contained each map reduce reduceRight find filter where findWhere
@@ -29,13 +31,17 @@ syntax keyword coffee_utility contained noConflict identify times random mixin u
 syntax keyword coffee_utility contained escape unescape result template
 syntax keyword coffee_chaining contained chain value
 
+syntax keyword coffee_lodash contained at bindKey cloneDeep createCallback findIndex findKey
+syntax keyword coffee_lodash contained forEach forIn forOwn isPlainObject merge parseInt partial
+syntax keyword coffee_lodash contained partialRight runInContext support unzip where 
+
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_lisp_syntax_inits")
+if version >= 508 || !exists("did_underscore_coffee_syntax_inits")
   if version < 508
-    let did_lisp_syntax_inits = 1
+    let did_underscore_coffee_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
     command -nargs=+ HiLink hi def link <args>

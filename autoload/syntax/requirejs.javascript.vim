@@ -6,11 +6,11 @@
 " URL:         http://requirejs.org/
 
 
-syntax keyword javascriptRequire require requirejs containedin=ALLBUT,javascriptComment nextgroup=javascriptRequiredot
+syntax keyword javascriptRequire require requirejs containedin=ALLBUT,javascriptComment,javascriptString nextgroup=javascriptRequiredot
 syntax match   javascriptRequiredot contained /\./ nextgroup=javascriptRequireMethods
 syntax keyword javascriptRequireMethods contained config
 
-syntax keyword javascriptRdefine define containedin=ALLBUT,javascriptComment nextgroup=javascriptRdefinedot
+syntax keyword javascriptRdefine define containedin=ALLBUT,javascriptComment,javascriptString nextgroup=javascriptRdefinedot
 syntax match   javascriptRdefinedot contained /\./ nextgroup=javascriptRdefineMethods
 syntax keyword javascriptRdefineMethods contained amd
 
@@ -18,9 +18,9 @@ syntax keyword javascriptRdefineMethods contained amd
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_lisp_syntax_inits")
+if version >= 508 || !exists("did_requirejs_javascript_syntax_inits")
   if version < 508
-    let did_lisp_syntax_inits = 1
+    let did_requirejs_javascript_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
     command -nargs=+ HiLink hi def link <args>

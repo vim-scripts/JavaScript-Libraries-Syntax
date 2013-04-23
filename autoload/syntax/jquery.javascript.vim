@@ -2,11 +2,11 @@
 " Language:    jQuery for javascript
 " Maintainer:  othree <othree@gmail.com>
 " Maintainer:  Bruno Michel <brmichel@free.fr>
-" Last Change: 2013/04/21
-" Version:     1.9.0.1
+" Last Change: 2013/04/23
+" Version:     1.9.0.2
 " URL:         http://api.jquery.com/
 
-syntax keyword javascriptjQuery          containedin=ALLBUT,javascriptComment jQuery $ nextgroup=javascriptjQuerydot,javascriptjQuerybracketsdot
+syntax keyword javascriptjQuery          containedin=ALLBUT,javascriptComment,javascriptString jQuery $ nextgroup=javascriptjQuerydot,javascriptjQuerybracketsdot
 syntax match   javascriptjQuerydot       contained /\./ nextgroup=@javascriptQGlobals
 syntax match   javascriptjQuerydot       contained /([^)]*)\./ nextgroup=@javascriptQFunctions
 
@@ -16,7 +16,7 @@ syntax keyword javascriptQCore           contained holdReady noConflict when
 syntax keyword javascriptQCoreObj        contained Callback Deferred
 syntax keyword javascriptQCoreData       contained data dequeue hasData queue removeData
 syntax keyword javascriptQCoreAjax       contained ajax ajaxPrefilter ajaxSetup ajaxTransport param get getJSON getScript post
-syntax keyword javascriptQProperties     contained context fx.interval fx.off length selector support cssHooks
+syntax keyword javascriptQProperties     contained context fx.interval fx.off length support cssHooks
 syntax keyword javascriptQUtilities      contained each extend globalEval grep inArray isArray isEmptyObject isFunction isPlainObject isWindow isXMLDoc makeArray map merge noop now parseHTML parseJSON parseXML proxy trim type unique
 syntax match   javascriptQUtilities      contained /contains/
 
@@ -28,7 +28,7 @@ syntax keyword javascriptQAttributes     contained addClass attr hasClass html p
 syntax keyword javascriptQCallbacks      contained add disable disabled empty fire fired fireWith has lock locked remove Callbacks
 syntax keyword javascriptQCSS            contained css
 syntax keyword javascriptQData           contained clearQueue data dequeue queue removeData
-syntax keyword javascriptQDeferred       contained Deferred always done fail notify pipe progress promise reject rejectWith resolved resolveWith notifyWith state then
+syntax keyword javascriptQDeferred       contained Deferred always done fail notify progress promise reject rejectWith resolved resolveWith notifyWith state then
 syntax keyword javascriptQDimensions     contained height innerHeight innerWidth outerHeight outerWidth width
 syntax keyword javascriptQEffects        contained hide show toggle
 syntax keyword javascriptQEffects        contained animate delay stop
@@ -47,24 +47,24 @@ syntax keyword javascriptQManipulation   contained append appendTo html preprend
 syntax keyword javascriptQManipulation   contained after before insertAfter insertBefore
 syntax keyword javascriptQManipulation   contained detach empty remove
 syntax keyword javascriptQManipulation   contained replaceAll replaceWith
-syntax keyword javascriptQMiscellaneous  contained index size toArray
+syntax keyword javascriptQMiscellaneous  contained index toArray
 syntax keyword javascriptQOffset         contained offset offsetParent position scrollTop scrollLeft
 syntax keyword javascriptQTraversing     contained eq filter first has is last map not slice
-syntax keyword javascriptQTraversing     contained add andSelf contents end
+syntax keyword javascriptQTraversing     contained add andBack contents end
 syntax keyword javascriptQTraversing     contained children closest find next nextAll nextUntil parent parents parentsUntil prev prevAll prevUntil siblings
 
 
 " selector
-syntax region  javascriptStringD          start=+"+  skip=+\\\\\|\\"+  end=+"\|$+  contains=javascriptSpecial,@htmlPreproc,@jSelectors
-syntax region  javascriptStringS          start=+'+  skip=+\\\\\|\\'+  end=+'\|$+  contains=javascriptSpecial,@htmlPreproc,@jSelectors
+syntax region  javascriptString           start=+"+  skip=+\\\\\|\\"+  end=+"\|$+  contains=javascriptSpecial,@htmlPreproc,@jSelectors
+syntax region  javascriptString           start=+'+  skip=+\\\\\|\\'+  end=+'\|$+  contains=javascriptSpecial,@htmlPreproc,@jSelectors
 
 syntax cluster jSelectors      contains=jId,jClass,jOperators,jBasicFilters,jContentFilters,jVisibility,jChildFilters,jForms,jFormFilters
 syntax match   jId             contained /#[0-9A-Za-z_\-]\+/
 syntax match   jClass          contained /\.[0-9A-Za-z_\-]\+/
 syntax match   jOperators      contained /*\|>\|+\|-\|\~/
-syntax match   jBasicFilters   contained /:\(animated\|eq\|even\|first\|focus\|gt\|header\|last\|lt\|not\|odd\|root\|target\)/
-syntax match   jChildFilters   contained /:\(first\|last\|nth\|only\)-child/
-syntax match   jChildFilters   contained /:\(first\|last\|nth\|only\)-of-type/
+syntax match   jBasicFilters   contained /:\(animated\|eq\|even\|first\|focus\|gt\|header\|last\|lang\|lt\|not\|odd\|root\|target\)/
+syntax match   jChildFilters   contained /:\(first\|last\|nth\|only\|nth-last\)-child/
+syntax match   jChildFilters   contained /:\(first\|last\|nth\|only\|nth-last\)-of-type/
 syntax match   jContentFilters contained /:\(contains\|empty\|has\|parent\)/
 syntax match   jForms          contained /:\(button\|checkbox\|checked\|disabled\|enabled\|file\|image\|input\|password\|radio\|reset\|selected\|submit\|text\)/
 syntax match   jVisibility     contained /:\(hidden\|visible\)/
@@ -72,9 +72,9 @@ syntax match   jVisibility     contained /:\(hidden\|visible\)/
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_lisp_syntax_inits")
+if version >= 508 || !exists("did_jquery_javascript_syntax_inits")
   if version < 508
-    let did_lisp_syntax_inits = 1
+    let did_jquery_javascript_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
     command -nargs=+ HiLink hi def link <args>

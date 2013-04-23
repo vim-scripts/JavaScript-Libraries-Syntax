@@ -4,12 +4,14 @@
 " Last Change: 2013/04/21
 " Version:     1.4.4.1
 " URL:         http://underscorejs.org/
+" LoDash:      1.2.0
+" URL:         http://lodash.com/
 
-syntax match   javascriptunderscore containedin=ALLBUT,javascriptComment /\<_\>/ nextgroup=javascriptunderscoredot
+syntax match   javascriptunderscore containedin=ALLBUT,javascriptComment,javascriptString /\<_\>/ nextgroup=javascriptunderscoredot
 syntax match   javascriptunderscoredot contained /\./ nextgroup=@javascript_Functions
 syntax match   javascriptunderscoredot contained /([^)]*)\./ nextgroup=@javascript_Functions
 
-syntax cluster javascript_Functions contains=javascript_collections,javascript_arrays,javascript_functions,javascript_objects,javascript_chaining
+syntax cluster javascript_Functions contains=javascript_collections,javascript_arrays,javascript_functions,javascript_objects,javascript_chaining,javascript_lodash
 
 syntax match   javascript_collections contained /contains/
 syntax keyword javascript_collections contained each map reduce reduceRight find filter where findWhere
@@ -29,13 +31,17 @@ syntax keyword javascript_utility contained noConflict identify times random mix
 syntax keyword javascript_utility contained escape unescape result template
 syntax keyword javascript_chaining contained chain value
 
+syntax keyword javascript_lodash contained at bindKey cloneDeep createCallback findIndex findKey
+syntax keyword javascript_lodash contained forEach forIn forOwn isPlainObject merge parseInt partial
+syntax keyword javascript_lodash contained partialRight runInContext support unzip where 
+
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_lisp_syntax_inits")
+if version >= 508 || !exists("did_underscore_javascript_syntax_inits")
   if version < 508
-    let did_lisp_syntax_inits = 1
+    let did_underscore_javascript_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
     command -nargs=+ HiLink hi def link <args>

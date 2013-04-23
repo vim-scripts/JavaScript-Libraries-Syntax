@@ -5,7 +5,7 @@
 " Version:     0.9.10
 " URL:         http://backbonejs.org/
 
-syntax keyword typescriptBackbone Backbone Collection Model View Events Router History Sync Utility containedin=ALLBUT,typescriptComment
+syntax keyword typescriptBackbone Backbone Collection Model View Events Router History Sync Utility containedin=ALLBUT,typescriptComment,typescriptString
 
 syntax cluster typescriptBFunctions contains=typescriptBEvents,typescriptBModel,typescriptBCollection,typescriptBRouter,typescriptBHistory,typescriptBSync,typescriptBView,typescriptBUtility
 syntax cluster typescriptBAttrs contains=typescriptBModelAttrs,typescriptBCollectionAttrs,typescriptBRouterAttrs,typescriptBSyncAttrs,typescriptBViewAttrs
@@ -33,9 +33,9 @@ syntax keyword typescriptBViewAttrs match /$el/
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_lisp_syntax_inits")
+if version >= 508 || !exists("did_backbone_typescript_syntax_inits")
   if version < 508
-    let did_lisp_syntax_inits = 1
+    let did_backbone_typescript_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
     command -nargs=+ HiLink hi def link <args>
