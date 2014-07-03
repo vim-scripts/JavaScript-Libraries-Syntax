@@ -2,13 +2,15 @@
 " Language:    jQuery for typescript
 " Maintainer:  othree <othree@gmail.com>
 " Maintainer:  Bruno Michel <brmichel@free.fr>
-" Last Change: 2013/04/23
+" Last Change: 2014/02/13
 " Version:     1.9.0.2
 " URL:         http://api.jquery.com/
 
-syntax keyword typescriptjQuery          containedin=ALLBUT,typescriptComment,typescriptString jQuery $ nextgroup=typescriptjQuerydot,typescriptjQuerybracketsdot
-syntax match   typescriptjQuerydot       contained /\./ nextgroup=@typescriptQGlobals
-syntax match   typescriptjQuerydot       contained /([^)]*)\./ nextgroup=@typescriptQFunctions
+setlocal iskeyword+=$
+
+syntax keyword typescriptjQuery jQuery $ containedin=ALLBUT,typescriptComment,typescriptLineComment,typescriptString,typescriptTemplate,typescriptTemplateSubstitution
+" syntax match   typescriptjQuerydot       contained /\./ nextgroup=@typescriptQGlobals
+" syntax match   typescriptjQuerydot       contained /([^)]*)\./ nextgroup=@typescriptQFunctions
 
 " jQuery.*
 syntax cluster typescriptQGlobals        contains=typescriptQCore,typescriptQCoreObj,typescriptQCoreData,typescriptQUtilities,typescriptQProperties
@@ -21,7 +23,7 @@ syntax keyword typescriptQUtilities      contained each extend globalEval grep i
 syntax match   typescriptQUtilities      contained /contains/
 
 " jqobj.*
-syntax cluster typescriptQFunctions      contains=typescriptQAjax,typescriptQAttributes,typescriptQCallbacks,typescriptQCore,typescriptQCSS,typescriptQData,typescriptQDeferred,typescriptQDimensions,typescriptQEffects,typescriptQEvents,typescriptQManipulation,typescriptQMiscellaneous,typescriptQOffset,typescriptQTraversing,typescriptQUtilities
+syntax cluster typescriptQFunctions      contains=@typescriptQGlobals,typescriptQAjax,typescriptQAttributes,typescriptQCallbacks,typescriptQCore,typescriptQCSS,typescriptQData,typescriptQDeferred,typescriptQDimensions,typescriptQEffects,typescriptQEvents,typescriptQManipulation,typescriptQMiscellaneous,typescriptQOffset,typescriptQTraversing,typescriptQUtilities
 syntax keyword typescriptQAjax           contained ajaxComplete ajaxError ajaxSend ajaxStart ajaxStop ajaxSuccess
 syntax keyword typescriptQAjax           contained serialize serializeArray ajaxTransport load
 syntax keyword typescriptQAttributes     contained addClass attr hasClass html prop removeAttr removeClass removeProp toggleClass val
@@ -31,7 +33,7 @@ syntax keyword typescriptQData           contained clearQueue data dequeue queue
 syntax keyword typescriptQDeferred       contained Deferred always done fail notify progress promise reject rejectWith resolved resolveWith notifyWith state then
 syntax keyword typescriptQDimensions     contained height innerHeight innerWidth outerHeight outerWidth width
 syntax keyword typescriptQEffects        contained hide show toggle
-syntax keyword typescriptQEffects        contained animate delay stop
+syntax keyword typescriptQEffects        contained animate delay stop finish
 syntax keyword typescriptQEffects        contained fadeIn fadeOut fadeTo fadeToggle
 syntax keyword typescriptQEffects        contained slideDown slideToggle slideUp
 syntax keyword typescriptQEvents         contained error resize scroll

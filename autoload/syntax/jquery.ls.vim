@@ -2,13 +2,15 @@
 " Language:    jQuery for ls
 " Maintainer:  othree <othree@gmail.com>
 " Maintainer:  Bruno Michel <brmichel@free.fr>
-" Last Change: 2013/04/23
+" Last Change: 2014/02/13
 " Version:     1.9.0.2
 " URL:         http://api.jquery.com/
 
-syntax keyword lsjQuery          containedin=ALLBUT,lsComment,lsString jQuery $ nextgroup=lsjQuerydot,lsjQuerybracketsdot
-syntax match   lsjQuerydot       contained /\./ nextgroup=@lsQGlobals
-syntax match   lsjQuerydot       contained /([^)]*)\./ nextgroup=@lsQFunctions
+setlocal iskeyword+=$
+
+syntax keyword lsjQuery jQuery $ containedin=ALLBUT,lsComment,lsLineComment,lsString,lsTemplate,lsTemplateSubstitution
+" syntax match   lsjQuerydot       contained /\./ nextgroup=@lsQGlobals
+" syntax match   lsjQuerydot       contained /([^)]*)\./ nextgroup=@lsQFunctions
 
 " jQuery.*
 syntax cluster lsQGlobals        contains=lsQCore,lsQCoreObj,lsQCoreData,lsQUtilities,lsQProperties
@@ -21,7 +23,7 @@ syntax keyword lsQUtilities      contained each extend globalEval grep inArray i
 syntax match   lsQUtilities      contained /contains/
 
 " jqobj.*
-syntax cluster lsQFunctions      contains=lsQAjax,lsQAttributes,lsQCallbacks,lsQCore,lsQCSS,lsQData,lsQDeferred,lsQDimensions,lsQEffects,lsQEvents,lsQManipulation,lsQMiscellaneous,lsQOffset,lsQTraversing,lsQUtilities
+syntax cluster lsQFunctions      contains=@lsQGlobals,lsQAjax,lsQAttributes,lsQCallbacks,lsQCore,lsQCSS,lsQData,lsQDeferred,lsQDimensions,lsQEffects,lsQEvents,lsQManipulation,lsQMiscellaneous,lsQOffset,lsQTraversing,lsQUtilities
 syntax keyword lsQAjax           contained ajaxComplete ajaxError ajaxSend ajaxStart ajaxStop ajaxSuccess
 syntax keyword lsQAjax           contained serialize serializeArray ajaxTransport load
 syntax keyword lsQAttributes     contained addClass attr hasClass html prop removeAttr removeClass removeProp toggleClass val
@@ -31,7 +33,7 @@ syntax keyword lsQData           contained clearQueue data dequeue queue removeD
 syntax keyword lsQDeferred       contained Deferred always done fail notify progress promise reject rejectWith resolved resolveWith notifyWith state then
 syntax keyword lsQDimensions     contained height innerHeight innerWidth outerHeight outerWidth width
 syntax keyword lsQEffects        contained hide show toggle
-syntax keyword lsQEffects        contained animate delay stop
+syntax keyword lsQEffects        contained animate delay stop finish
 syntax keyword lsQEffects        contained fadeIn fadeOut fadeTo fadeToggle
 syntax keyword lsQEffects        contained slideDown slideToggle slideUp
 syntax keyword lsQEvents         contained error resize scroll

@@ -11,17 +11,15 @@ let s:libs = [
   \ 'backbone',
   \ 'prelude',
   \ 'angularjs',
-  \ 'requirejs'
+  \ 'angularui',
+  \ 'requirejs',
+  \ 'sugar',
+  \ 'jasmine'
   \ ]
 
 let s:path = expand('<sfile>:p:h')
 
 function! jslibsyntax#load()
-  if exists('b:javascript_libraries_syntax')
-    return
-  endif
-  let b:javascript_libraries_syntax = 1
-
   if !exists('g:used_javascript_libs') 
     let g:used_javascript_libs = join(s:libs, ',')
   endif
@@ -37,14 +35,15 @@ function! jslibsyntax#load()
     if use
       let fn = s:path.'/syntax/'.lib.'.'.&filetype.'.vim'
       if filereadable(fn)
-        exe('source '.fn)
+        exe('source '.fnameescape(fn))
         let loaded = loaded + 1
       endif
     endif
     let index = index + 1
   endwhile
-  if loaded > 0
-    exe('source '.s:path.'/syntax/postprocess.'.&filetype.'.vim')
+  let fn = s:path.'/syntax/postprocess.'.&filetype.'.vim'
+  if loaded > 0 && filereadable(fn)
+    exe('source '.fnameescape(fn))
   endif
 endfunction
 

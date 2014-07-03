@@ -2,13 +2,15 @@
 " Language:    jQuery for coffee
 " Maintainer:  othree <othree@gmail.com>
 " Maintainer:  Bruno Michel <brmichel@free.fr>
-" Last Change: 2013/04/23
+" Last Change: 2014/02/13
 " Version:     1.9.0.2
 " URL:         http://api.jquery.com/
 
-syntax keyword coffeejQuery          containedin=ALLBUT,coffeeComment,coffeeString jQuery $ nextgroup=coffeejQuerydot,coffeejQuerybracketsdot
-syntax match   coffeejQuerydot       contained /\./ nextgroup=@coffeeQGlobals
-syntax match   coffeejQuerydot       contained /([^)]*)\./ nextgroup=@coffeeQFunctions
+setlocal iskeyword+=$
+
+syntax keyword coffeejQuery jQuery $ containedin=ALLBUT,coffeeComment,coffeeLineComment,coffeeString,coffeeTemplate,coffeeTemplateSubstitution
+" syntax match   coffeejQuerydot       contained /\./ nextgroup=@coffeeQGlobals
+" syntax match   coffeejQuerydot       contained /([^)]*)\./ nextgroup=@coffeeQFunctions
 
 " jQuery.*
 syntax cluster coffeeQGlobals        contains=coffeeQCore,coffeeQCoreObj,coffeeQCoreData,coffeeQUtilities,coffeeQProperties
@@ -21,7 +23,7 @@ syntax keyword coffeeQUtilities      contained each extend globalEval grep inArr
 syntax match   coffeeQUtilities      contained /contains/
 
 " jqobj.*
-syntax cluster coffeeQFunctions      contains=coffeeQAjax,coffeeQAttributes,coffeeQCallbacks,coffeeQCore,coffeeQCSS,coffeeQData,coffeeQDeferred,coffeeQDimensions,coffeeQEffects,coffeeQEvents,coffeeQManipulation,coffeeQMiscellaneous,coffeeQOffset,coffeeQTraversing,coffeeQUtilities
+syntax cluster coffeeQFunctions      contains=@coffeeQGlobals,coffeeQAjax,coffeeQAttributes,coffeeQCallbacks,coffeeQCore,coffeeQCSS,coffeeQData,coffeeQDeferred,coffeeQDimensions,coffeeQEffects,coffeeQEvents,coffeeQManipulation,coffeeQMiscellaneous,coffeeQOffset,coffeeQTraversing,coffeeQUtilities
 syntax keyword coffeeQAjax           contained ajaxComplete ajaxError ajaxSend ajaxStart ajaxStop ajaxSuccess
 syntax keyword coffeeQAjax           contained serialize serializeArray ajaxTransport load
 syntax keyword coffeeQAttributes     contained addClass attr hasClass html prop removeAttr removeClass removeProp toggleClass val
@@ -31,7 +33,7 @@ syntax keyword coffeeQData           contained clearQueue data dequeue queue rem
 syntax keyword coffeeQDeferred       contained Deferred always done fail notify progress promise reject rejectWith resolved resolveWith notifyWith state then
 syntax keyword coffeeQDimensions     contained height innerHeight innerWidth outerHeight outerWidth width
 syntax keyword coffeeQEffects        contained hide show toggle
-syntax keyword coffeeQEffects        contained animate delay stop
+syntax keyword coffeeQEffects        contained animate delay stop finish
 syntax keyword coffeeQEffects        contained fadeIn fadeOut fadeTo fadeToggle
 syntax keyword coffeeQEffects        contained slideDown slideToggle slideUp
 syntax keyword coffeeQEvents         contained error resize scroll
